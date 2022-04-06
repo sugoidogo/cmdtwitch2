@@ -1,6 +1,8 @@
 import tee
 tee.Tee('cmdtwitch.log', 'w')
 
+import signal
+import os
 import sys
 import atexit
 import traceback
@@ -11,29 +13,20 @@ import webbrowser
 import http.server
 from urllib.parse import urlparse, parse_qs
 
-pip=None
-
-def findpip():
-    pip='pip3'
-    pipv=subprocess.run('pip3 -V')
-    if(pipv.returncode!=0):
-        pip='pip'
-        pipv=subprocess.run('pip -V')
-        if(pipv.returncode!=0):
-            return False
-    if 'python 3' not in pip.stdout:
-        return False
-    return pip
-
-while True:
-    try:
-        import requests
-        break
-    except ImportError as e:
-        if(pip==None):
-            pip=findpip()
-        if(pip!=False):
-            os.system(pip+' install '+e.name)
+pip='pip3'
+pipv=subprocess.run('pip3 -V')
+if(pipv.returncode!=0):
+    pip='pip'
+    pipv=subprocess.run('pip -V')
+if 'python 3' not in pip.stdout:
+    pip=None
+if pip!=None:
+    os.system(pip+' install requests')
+    if os.system=='nt':
+        os.system(pip+' install pywin32')
+import requests
+if os.system=='nt':
+    import win32api
 
 try:
     import secret
@@ -146,6 +139,10 @@ def shutdown():
     commandsFile.close()
     print("clean shutdown complete")
 atexit.register(shutdown)
+signal.signal(signal.SIGINT, shutdown)
+signal.signal(signal.SIGHUP, shutdown)
+if os.name=='nt':
+    win32api.SetConsoleCtrlHandler(shutdown, True)
 
 while True:
     for id, redeem in commands.items():
