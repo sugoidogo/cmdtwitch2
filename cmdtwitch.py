@@ -17,16 +17,16 @@ pip='pip3'
 pipv=subprocess.run('pip3 -V')
 if(pipv.returncode!=0):
     pip='pip'
-    pipv=subprocess.run('pip -V')
-if 'python 3' not in pipv.stdout:
-    pip=None
+#    pipv=subprocess.run('pip -V')
+#if 'python 3' not in pipv.stdout:
+#    pip=None
 if pip!=None:
     os.system(pip+' install requests')
-    if os.system=='nt':
+    if os.name=='nt':
         os.system(pip+' install pywin32')
 import requests
-if os.system=='nt':
-    import win32api
+if os.name=='nt':
+    import win32.win32api
 
 try:
     import secret
@@ -122,7 +122,7 @@ def updateCommands():
     commandsFile.flush()
 updateCommands()
 
-def shutdown():
+def shutdown(*args):
     print("pausing all redeems before exit")
     for id in commands:
         request('https://api.twitch.tv/helix/channel_points/custom_rewards','PATCH',
@@ -140,9 +140,8 @@ def shutdown():
     print("clean shutdown complete")
 atexit.register(shutdown)
 signal.signal(signal.SIGINT, shutdown)
-signal.signal(signal.SIGHUP, shutdown)
 if os.name=='nt':
-    win32api.SetConsoleCtrlHandler(shutdown, True)
+    win32.win32api.SetConsoleCtrlHandler(shutdown,True)
 
 while True:
     for id, redeem in commands.items():
