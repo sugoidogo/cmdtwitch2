@@ -18,7 +18,7 @@ pipv=subprocess.run('pip3 -V')
 if(pipv.returncode!=0):
     pip='pip'
     pipv=subprocess.run('pip -V')
-if 'python 3' not in pip.stdout:
+if 'python 3' not in pipv.stdout:
     pip=None
 if pip!=None:
     os.system(pip+' install requests')
