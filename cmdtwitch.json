@@ -1,0 +1,14 @@
+{
+    "f9526990-12ea-41ca-8ee1-da53aeb03923": {
+        "title": "Desktop Goose",
+        "command": "goose.cmd",
+        "waitforexit": false,
+        "last": "eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6IllqWmhNREV6WmpNdE9HWmxOeTAwTnpRNUxUazNNVGd0TnpRMk5qWmpPREk0TVRRMVgxOHlNREl5TFRBMExUQTJWREF6T2pVM09qUXpMalUyTlRrd016TXpXZz09In19"
+    },
+    "6fa5dc7d-a57b-4a03-bede-e05bcb6061be": {
+        "title": "Console Command",
+        "command": "python skytwitch.py $input",
+        "waitforexit": true,
+        "last": "eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6Ik5HTTFPV0k1WWpVdE0yVXhPUzAwWkdRNExXRmxaR1F0TldFek9EZGpOemhoWTJVeFgxOHlNREl5TFRBMExUQTJWREEwT2pBd09qQTRMakE0TlRNeU9Gbz0ifX0"
+    }
+}
