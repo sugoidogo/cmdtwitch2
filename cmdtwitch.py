@@ -160,11 +160,23 @@ while True:
             commands[id]['last']=reward["pagination"]["cursor"]
             input=reward["data"][0]["user_input"]
             command=redeem['command'].replace("$input",input)
-            if(redeem["waitforexit"]):
+            if('waitforexit' in redeem and redeem["waitforexit"]):
                 subprocess.run(command)
             else:
                 subprocess.Popen(command)
             updateCommands()
+            if "update" in redeem:
+                request('https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions','PATCH',
+                    headers=secret.auth_header,
+                    params={
+                        'id':reward['data'][0]['id'],
+                        'broadcaster_id':secret.broadcaster_id,
+                        'reward_id':id
+                    },
+                    json={
+                        'status':redeem['update']
+                    }
+                )
         except Exception as e:
             print(traceback.format_exc())
             time.sleep(1)
