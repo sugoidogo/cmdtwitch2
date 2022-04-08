@@ -22,20 +22,20 @@ Run commands on your pc for twitch redeems.
 ```json
 {
     "twitch-redeem-id": {
-        "title": "Name of Redeem",
+        "title": "Initial Redeem Name",
         "command": "script-to-run $input",
         "waitforexit": false,
+        "update":"STATUS",
         "last": "redeem-instance-id"
     }
 }
 ```
 
-- **The redeem ID is assigned by twitch and required to check for redemptions**. When adding a command for the first time, you can put anything for the `twitch-redeem-id`, because when the redeem id is invalid, cmdtwitch will create the redeem. If you accidentally edit your redeem id, you'll have to delete the redeem from your chanel and let cmdtwitch re-create it.
-
-- **CMDTwitch can only track redeems it created**. This is a limitation of the twitch api, which was designed for these bots to run on internet-accessible servers (support coming eventually).
-
-- **The title is only set when the redeem is created**. CMDTwitch will automatically pause its redeems when it exits, but otherwise only checks for redemptions after it's created.
-
-- **You must enable viewer input after the redeem is created to use `$input` in your command**. All other properties of the redeem can be changed at will, including the title, without affecting CMDTwitch.
-
-- **If your command takes more than a few seconds, set `waitforexit` to `false`**, otherwise all other redeems will have to wait for that command to finish.
+| Key Name | Key Description | Valid Values |
+| -------- | --------------- | ------------ |
+| twitch-redeem-id | identifier for this redeem | inital value can be anything, this field is updated from twitch when the redeem is created |
+| title | display name for redeem | inital value is used to create the redeem, not used or updated afterwards |
+| command | command to run on redemtion | this can be any single line, which will be executed by your operating system. Use `$input` to include user input in the command line. |
+| waitforexit | optional, whether to wait for the command to exit | true to wait for command to exit, false to continue immediately (default) |
+| update | optinal, status to assign to redemption instance | Can be either FULFILLED or CANCELED. Updating to CANCELED will refund the user their Channel Points. |
+| last | identifier for the last processed redemption | this field is updated from twitch when a redemption is processed, do not add/edit/remove this field. |
