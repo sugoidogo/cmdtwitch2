@@ -36,7 +36,6 @@ class OAuthRequestHandler(http.server.BaseHTTPRequestHandler):
         self.send_response(200)
         self.end_headers()
         self.wfile.write('<script>close();</script>'.encode())
-        self.wfile.close()
         secret.auth_code=parse_qs(urlparse(self.path).query)['code'][0]
         self.server.shutdown()
 
