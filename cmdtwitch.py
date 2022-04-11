@@ -1,6 +1,15 @@
 import tee
 tee.Tee('cmdtwitch.log', 'w')
 
+try:
+    import pip
+    pip.main(['install','requests'])
+    if (os.name == 'nt'):
+        pip.main(['install','pywin32'])
+except:
+    pass
+
+import requests
 import signal
 import os
 import sys
@@ -12,21 +21,6 @@ import json
 import webbrowser
 import http.server
 from urllib.parse import urlparse, parse_qs
-
-pip='pip3'
-pipv=subprocess.run('pip3 -V')
-if(pipv.returncode!=0):
-    pip='pip'
-#    pipv=subprocess.run('pip -V')
-#if 'python 3' not in pipv.stdout:
-#    pip=None
-if pip!=None:
-    os.system(pip+' install requests')
-    if os.name=='nt':
-        os.system(pip+' install pywin32')
-import requests
-if os.name=='nt':
-    import win32.win32api
 
 try:
     import secret
@@ -141,7 +135,8 @@ def shutdown(*args):
 atexit.register(shutdown)
 signal.signal(signal.SIGINT, shutdown)
 if os.name=='nt':
-    win32.win32api.SetConsoleCtrlHandler(shutdown,True)
+    import win32.win32api as win32api
+    win32api.SetConsoleCtrlHandler(shutdown,True)
 
 while True:
     for id, redeem in commands.items():
