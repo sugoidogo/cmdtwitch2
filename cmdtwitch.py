@@ -7,7 +7,7 @@ try:
     if (os.name == 'nt'):
         pip.main(['install','pywin32'])
 except:
-    pass
+    print('an error occured during dependancy checks, ignoring')
 
 import requests
 import signal
@@ -135,8 +135,11 @@ def shutdown(*args):
 atexit.register(shutdown)
 signal.signal(signal.SIGINT, shutdown)
 if os.name=='nt':
-    import win32.win32api as win32api
-    win32api.SetConsoleCtrlHandler(shutdown,True)
+    try:
+        import win32.win32api as win32api
+        win32api.SetConsoleCtrlHandler(shutdown,True)
+    except:
+        print('failed to create window close handler, please exit with Ctrl+C instead')
 
 def sanitize(input:str)->str:
     import string
