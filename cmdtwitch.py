@@ -149,6 +149,8 @@ try:
         filter='<|>;\t\n\r\x0b\x0c'
         return ''.join(char for char in input if char in printable and char not in filter)
 
+    print('startup complete, awaiting redeems')
+
     while True:
         for id, redeem in commands.items():
             reward=request('https://api.twitch.tv/helix/channel_points/custom_rewards/redemptions',
