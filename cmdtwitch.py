@@ -3,17 +3,19 @@ try:
     tee.Tee('cmdtwitch.log', 'w')
 
     try:
-        import pip
-        pip.main(['install','requests'])
-        if (os.name == 'nt'):
-            pip.main(['install','pywin32'])
-    except:
+        import pip, os
+        args=['install','requests']
+        if os.name == 'nt':
+            args.append('pywin32')
+        pip.main(args)
+    except Exception as e:
         print('an error occured during dependency checks')
+        from traceback import print_exc
+        print_exc()
         print('if you encounter issues, make sure requests is installed')
 
     import requests
     import signal
-    import os
     import sys
     import atexit
     import traceback
