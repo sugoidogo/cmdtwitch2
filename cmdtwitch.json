@@ -7,7 +7,7 @@
     },
     "6fa5dc7d-a57b-4a03-bede-e05bcb6061be": {
         "title": "Console Command",
-        "command": "python skytwitch.py $input",
+        "command": "cmd /c echo $input > skytwitch.txt",
         "waitforexit": true,
         "update": "CANCELED",
         "last": "eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6Ik1qSXhZVE16WlRjdFpUTXlNUzAwWTJFekxXSXhOekl0TmpZd1lXVTJZelk1WXpVNVgxOHlNREl5TFRBMExURXhWREF6T2pVM09qSTFMakU1TnpVM01Ea3dPVm89In19"
