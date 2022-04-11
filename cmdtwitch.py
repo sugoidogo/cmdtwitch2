@@ -7,7 +7,7 @@ try:
     if (os.name == 'nt'):
         pip.main(['install','pywin32'])
 except:
-    print('an error occured during dependancy checks')
+    print('an error occured during dependency checks')
     print('if you encounter issues, make sure requests is installed')
 
 import requests
