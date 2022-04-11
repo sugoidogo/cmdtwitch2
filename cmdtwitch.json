@@ -9,6 +9,12 @@
         "title": "Console Command",
         "command": "python skytwitch.py $input",
         "waitforexit": true,
-        "last": "eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6Ik5HTTFPV0k1WWpVdE0yVXhPUzAwWkdRNExXRmxaR1F0TldFek9EZGpOemhoWTJVeFgxOHlNREl5TFRBMExUQTJWREEwT2pBd09qQTRMakE0TlRNeU9Gbz0ifX0"
+        "update": "CANCELED",
+        "last": "eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6Ik1qSXhZVE16WlRjdFpUTXlNUzAwWTJFekxXSXhOekl0TmpZd1lXVTJZelk1WXpVNVgxOHlNREl5TFRBMExURXhWREF6T2pVM09qSTFMakU1TnpVM01Ea3dPVm89In19"
+    },
+    "7fda383f-af03-4db4-9b8b-0c4969ccd8fb": {
+        "title": "TTS",
+        "command": "PowerShell -Command \"Add-Type -AssemblyName System.Speech; (New-Object System.Speech.Synthesis.SpeechSynthesizer).Speak('$input');\"",
+        "last": "eyJiIjpudWxsLCJhIjp7IkN1cnNvciI6Ik16Qm1OVEV4TkRJdE9XTTBOQzAwTmpNM0xUaGpPREl0WVRkbFlqSTRPRFZrTVdVMFgxOHlNREl5TFRBMExURXdWREEyT2pJNU9qSTRMamM0TmpBNU1USTBORm89In19"
     }
 }
