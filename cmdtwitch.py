@@ -156,6 +156,9 @@ while True:
                     'first':1
                 }
             )
+            if 'cursor' not in reward['pagination']:
+                time.sleep(1)
+                continue
             print(reward)
             commands[id]['last']=reward["pagination"]["cursor"]
             input=reward["data"][0]["user_input"]
@@ -179,4 +182,3 @@ while True:
                 )
         except Exception as e:
             print(traceback.format_exc())
-            time.sleep(1)
