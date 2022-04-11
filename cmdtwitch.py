@@ -138,6 +138,11 @@ if os.name=='nt':
     import win32.win32api as win32api
     win32api.SetConsoleCtrlHandler(shutdown,True)
 
+def sanitize(input:str)->str:
+    import string
+    filter='<|>;\t\n\r\x0b\x0c'
+    return ''.join(char for char in input if char in printable and char not in filter)
+
 while True:
     for id, redeem in commands.items():
         try:
@@ -156,7 +161,7 @@ while True:
                 continue
             print(reward)
             commands[id]['last']=reward["pagination"]["cursor"]
-            input=reward["data"][0]["user_input"]
+            input=santitze(ireward["data"][0]["user_input"])
             command=redeem['command'].replace("$input",input)
             if('waitforexit' in redeem and redeem["waitforexit"]):
                 subprocess.run(command)
