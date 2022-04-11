@@ -145,7 +145,7 @@ try:
             print('failed to create window close handler, please exit with Ctrl+C instead')
 
     def sanitize(input:str)->str:
-        import string
+        from string import printable
         filter='<|>;\t\n\r\x0b\x0c'
         return ''.join(char for char in input if char in printable and char not in filter)
 
@@ -168,7 +168,7 @@ try:
                 continue
             print(reward)
             commands[id]['last']=reward["pagination"]["cursor"]
-            input=santitze(ireward["data"][0]["user_input"])
+            input=sanitize(reward["data"][0]["user_input"])
             command=redeem['command'].replace("$input",input)
             if('waitforexit' in redeem and redeem["waitforexit"]):
                 subprocess.run(command)
