@@ -39,3 +39,7 @@ Run commands on your pc for twitch redeems.
 | waitforexit | optional, whether to wait for the command to exit | true to wait for command to exit, false to continue immediately (default) |
 | update | optinal, status to assign to redemption instance | Can be either FULFILLED or CANCELED. Updating to CANCELED will refund the user their Channel Points. |
 | last | identifier for the last processed redemption | this field is updated from twitch when a redemption is processed, do not add/edit/remove this field. |
+
+## Support
+- Get support via [Discord](https://discord.gg/zxDnYSvMNw)
+- Give support via [PayPal](https://paypal.me/SugoiDogo)
